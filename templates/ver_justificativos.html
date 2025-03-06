@@ -1,0 +1,24 @@
+<h2>Ver Justificaciones</h2>
+<form method="GET">
+    <label for="materia">Materia:</label>
+    <select name="materia">
+        {% for materia in materias %}
+        <option value="{{ materia.id }}">{{ materia.nombre }}</option>
+        {% endfor %}
+    </select>
+    <label for="fecha">Fecha:</label>
+    <input type="date" name="fecha">
+    <button type="submit">Buscar</button>
+</form>
+
+<table border="1">
+    <tr><th>Alumno</th><th>Fecha</th><th>Causa</th><th>Certificado</th></tr>
+    {% for j in justificaciones %}
+    <tr>
+        <td>{{ j.nombre }} {{ j.apellido }}</td>
+        <td>{{ j.fecha }}</td>
+        <td>{{ j.causa }}</td>
+        <td><a href="{{ j.certificado }}" target="_blank">Ver Certificado</a></td>
+    </tr>
+    {% endfor %}
+</table>

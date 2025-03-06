@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Ver Asistencia</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h2 class="text-center">Ver Asistencia</h2>
+    <form method="POST" class="card p-4 shadow-lg">
+        <div class="mb-3">
+            <label for="carrera" class="form-label">Carrera:</label>
+            <select name="carrera" id="carrera" class="form-select" required>
+                <option value="">Seleccionar Carrera</option>
+                {% for carrera in carreras %}
+                    <option value="{{ carrera.id }}">{{ carrera.nombre }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="anio" class="form-label">Año:</label>
+            <select name="anio" id="anio" class="form-select" required>
+                <option value="">Seleccionar Año</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="comision" class="form-label">Comisión:</label>
+            <select name="comision" id="comision" class="form-select" required>
+                <option value="">Seleccionar Comisión</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="materia" class="form-label">Materia:</label>
+            <select name="materia" id="materia" class="form-select" required>
+                <option value="">Seleccionar Materia</option>
+            </select>
+        </div>
+
+        <div class="d-flex justify-content-end">
+            <button type="submit" class="btn btn-primary">Ver Asistencia</button>
+        </div>
+    </form>
+</div>
+
+<script src="{{ url_for('static', filename='scripts/ver_asistencia.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

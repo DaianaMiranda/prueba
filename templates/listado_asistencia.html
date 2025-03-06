@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Listado de Asistencia</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script>
+        function cambiarFiltro() {
+            const filtro = document.getElementById("filtro").value;
+            window.location.href = "?filtro=" + filtro;
+        }
+    </script>
+</head>
+<body>
+<div class="container mt-5">
+    <h2 class="text-center">Asistencia - {{ materia }}</h2>
+    <div class="mb-3">
+        <label><strong>Filtrar por:</strong></label>
+        <select id="filtro" class="form-select" onchange="cambiarFiltro()">
+            <option value="semana" {% if filtro == 'semana' %}selected{% endif %}>Última semana</option>
+            <option value="mes" {% if filtro == 'mes' %}selected{% endif %}>Último mes</option>
+        </select>
+    </div>
+    <table class="table table-bordered">
+        <thead class="table-dark">
+        <tr>
+            <th class="text-center">Apellido y Nombre</th>
+            <th class="text-center">Asistencias</th>
+            <th class="text-center">Porcentaje</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for alumno in alumnos %}
+            <tr>
+                <td>{{ alumno.apellido_nombre }}</td>
+                <td class="text-center">{{ alumno.asistencias_totales }} / {{ alumno.clases_totales }}</td>
+                <td class="text-center">{{ alumno.porcentaje_asistencia }}%</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ url_for('ver_asistencia') }}" class="btn btn-secondary">Volver</a>
+</div>
+</body>
+</html>
